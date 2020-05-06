@@ -9,6 +9,7 @@
 import UIKit
 
 @objc public protocol MTSlideToOpenDelegate {
+    func mtSlideToOpenDelegateDidChangeSliderValue(_ sender: MTSlideToOpenView, value: CGFloat)
     func mtSlideToOpenDelegateDidFinish(_ sender: MTSlideToOpenView)
 }
 
@@ -232,6 +233,8 @@ import UIKit
     }
     
     private func updateThumbnailXPosition(_ x: CGFloat) {
+        let relativeValue =  x / xEndingPoint
+        self.delegate?.mtSlideToOpenDelegateDidChangeSliderValue(self, value: relativeValue)
         leadingThumbnailViewConstraint?.constant = x
         setNeedsLayout()
     }

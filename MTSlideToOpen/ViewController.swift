@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController, MTSlideToOpenDelegate {
+
     lazy var slideToOpen: MTSlideToOpenView = {
         let slide = MTSlideToOpenView(frame: CGRect(x: 26, y: 100, width: 317, height: 56))
         slide.sliderViewTopDistance = 0
@@ -86,6 +87,10 @@ class ViewController: UIViewController, MTSlideToOpenDelegate {
     }
     
     // MARK: MTSlideToOpenDelegate
+    func mtSlideToOpenDelegateDidChangeSliderValue(_ sender: MTSlideToOpenView, value: CGFloat) {
+        print(value)
+    }
+
     func mtSlideToOpenDelegateDidFinish(_ sender: MTSlideToOpenView) {
         let alertController = UIAlertController(title: "", message: "Done!", preferredStyle: .alert)
         let doneAction = UIAlertAction(title: "Okay", style: .default) { (action) in
