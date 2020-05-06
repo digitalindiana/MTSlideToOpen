@@ -9,6 +9,7 @@
 import UIKit
 
 @objc public protocol MTSlideToOpenDelegate {
+    func mtSlideToOpenDelegateDidRelease(_ sender: MTSlideToOpenView)
     func mtSlideToOpenDelegateDidChangeSliderValue(_ sender: MTSlideToOpenView, value: CGFloat)
     func mtSlideToOpenDelegateDidFinish(_ sender: MTSlideToOpenView)
 }
@@ -275,6 +276,8 @@ import UIKit
                 updateThumbnailXPosition(thumbnailViewStartingDistance)
                 return
             }
+
+            delegate?.mtSlideToOpenDelegateDidRelease(self)
             UIView.animate(withDuration: animationVelocity) {
                 self.leadingThumbnailViewConstraint?.constant = self.thumbnailViewStartingDistance
                 self.textLabel.alpha = 1
